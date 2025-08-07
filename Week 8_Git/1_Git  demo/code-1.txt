@@ -1,0 +1,150 @@
+
+First  hands on git
+
+
+MS6@BOSS MINGW64 ~
+$ git --version
+git version 2.50.1.windows.1
+
+MS6@BOSS MINGW64 ~
+$ git config --global user.name "Renu_7"
+git config --global user.email "renuhamsika@gmail.com"
+
+MS6@BOSS MINGW64 ~
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=schannel
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=main
+user.name=Renu_7
+user.email=renuhamsika@gmail.com
+core.editor=notepad++
+
+MS6@BOSS MINGW64 ~
+$ notepad++
+
+MS6@BOSS MINGW64 ~
+$ alias np='notepad++'
+
+MS6@BOSS MINGW64 ~
+$ notepad ~/.bashrc
+
+MS6@BOSS MINGW64 ~
+$ source ~/.bashrc
+
+MS6@BOSS MINGW64 ~
+$ git config --global core.editor "notepad++"
+
+MS6@BOSS MINGW64 ~
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=schannel
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=main
+user.name=Renu_7
+user.email=renuhamsika@gmail.com
+core.editor=notepad++
+
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ mkdir Gitdemo
+cd Gitdemo
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git init
+Initialized empty Git repository in C:/Users/MS6/GitDemo/Gitdemo/.git/
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ ls -a
+./  ../  .git/
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ echo "Welcome to Git hands-on!" > welcome.txt
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ ls
+cat welcome.txt
+welcome.txt
+Welcome to Git hands-on!
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git add welcome.txt
+warning: in the working copy of 'welcome.txt', LF will be replaced by CRLF the next time Git touches it
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git commit
+Aborting commit due to empty commit message.
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git commit
+[main (root-commit) 4c66af5] Add welcome.txt to track welcome message Add welcome.txt with greeting message
+ 1 file changed, 1 insertion(+)
+ create mode 100644 welcome.txt
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git remote add origin https://gitlab.com/renu_7-group/gitdemo.git
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git remote -v
+origin  https://gitlab.com/renu_7-group/gitdemo.git (fetch)
+origin  https://gitlab.com/renu_7-group/gitdemo.git (push)
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git pull origin main --allow-unrelated-histories
+remote: Enumerating objects: 32, done.
+remote: Counting objects: 100% (32/32), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 32 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (32/32), 5.67 KiB | 24.00 KiB/s, done.
+From https://gitlab.com/renu_7-group/gitdemo
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+Merge made by the 'ort' strategy.
+ .gitignore |  6 ++++
+ README.md  | 93 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ hello.xml  | 12 ++++++++
+ 3 files changed, 111 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 README.md
+ create mode 100644 hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$ git push -u origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 505 bytes | 252.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://gitlab.com/renu_7-group/gitdemo.git
+   4897105..896d00f  main -> main
+branch 'main' set up to track 'origin/main'.
+
+MS6@BOSS MINGW64 ~/GitDemo/Gitdemo (main)
+$

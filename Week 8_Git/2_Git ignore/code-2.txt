@@ -1,0 +1,53 @@
+Second hands-on git:
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ echo "This is a log file" > debug.log
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ mkdir log
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ echo "Another log file" >log/system.log
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        debug.log
+        log/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ notepad++ .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git add .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git commit -m "Add .gitignore to ignore log files and log folder"
+[main 3672395] Add .gitignore to ignore log files and log folder
+ 1 file changed, 2 insertions(+)
+ create mode 100644 .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git push origin main
+warning: redirecting to https://gitlab.com/renu_7-group/gitdemo.git/
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 347 bytes | 347.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://gitlab.com/renu_7-group/gitdemo
+   be91dc1..3672395  main -> main

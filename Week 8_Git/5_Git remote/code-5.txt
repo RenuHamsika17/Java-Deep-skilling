@@ -1,0 +1,74 @@
+Fifth hands on git:
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git checkout main
+git status
+Already on 'main'
+On branch main
+nothing to commit, working tree clean
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git branch
+* main
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git remote set-url origin https://gitlab.com/renu_7-group/gitdemo.git
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git pull origin main --allow-unrelated-histories
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 11 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (11/11), 3.69 KiB | 55.00 KiB/s, done.
+From https://gitlab.com/renu_7-group/gitdemo
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+Auto-merging .gitignore
+CONFLICT (add/add): Merge conflict in .gitignore
+Automatic merge failed; fix conflicts and then commit the result.
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main|MERGING)
+$ notepad++ .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main|MERGING)
+$ git add .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main|MERGING)
+$ git commit -m "Resolved merge conflict in .gitignore"
+[main 4897105] Resolved merge conflict in .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git push origin main
+Enumerating objects: 23, done.
+Counting objects: 100% (23/23), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (21/21), 2.00 KiB | 205.00 KiB/s, done.
+Total 21 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://gitlab.com/renu_7-group/gitdemo.git
+   3672395..4897105  main -> main
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git log --oneline --graph --decorate --all
+*   4897105 (HEAD -> main, origin/main) Resolved merge conflict in .gitignore
+|\
+| * 3672395 Add .gitignore to ignore log files and log folder
+| *   be91dc1 Merge branch 'main' of https://gitlab.com/renu_7-group/gitdemo Merged local and remote repositories
+| |\
+| | * dcb3c85 Initial commit
+| * fba5a65 Initial commit of GitDemo project
+* 59f63d6 Add .orig files to .gitignore
+*   3190e62 Resolved merge conflict in hello.xml
+|\
+| * 6e4ccef Modified hello.xml in GitWork
+* | 9ff81f7 Modified hello.xml in main
+* | ed5378c Added hello.xml in main
+|/
+* 5efba7e Added hello.xml in GitWork
+

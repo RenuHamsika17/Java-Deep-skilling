@@ -1,0 +1,160 @@
+Fourth git handson:
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ mkdir GitConflictDemo
+cd GitConflictDemo
+git init
+Initialized empty Git repository in C:/Users/MS6/GitDemo/GitConflictDemo/.git/
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git status
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git checkout -b GitWork
+Switched to a new branch 'GitWork'
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ echo "<message>Hello from GitWork</message>" > hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ git status
+On branch GitWork
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        hello.xml
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ git add hello.xml
+warning: in the working copy of 'hello.xml', LF will be replaced by CRLF the next time Git touches it
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ git commit -m "Added hello.xml in GitWork"
+[GitWork (root-commit) 5efba7e] Added hello.xml in GitWork
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ echo "<message>Hello from Main Branch</message>" > hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git add hello.xml
+git commit -m "Added hello.xml in main"
+warning: in the working copy of 'hello.xml', LF will be replaced by CRLF the next time Git touches it
+[main ed5378c] Added hello.xml in main
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git log --oneline --graph --decorate --all
+* ed5378c (HEAD -> main) Added hello.xml in main
+* 5efba7e (GitWork) Added hello.xml in GitWork
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git diff GitWork
+diff --git a/hello.xml b/hello.xml
+index 84f3217..064b23b 100644
+--- a/hello.xml
++++ b/hello.xml
+@@ -1 +1 @@
+-<message>Hello from GitWork</message>
++<message>Hello from Main Branch</message>
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git merge GitWork
+Already up to date.
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git checkout GitWork
+Switched to branch 'GitWork'
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ echo '<message>Hello from GitWork branch!</message>' > hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ git add hello.xml
+git commit -m "Modified hello.xml in GitWork"
+warning: in the working copy of 'hello.xml', LF will be replaced by CRLF the next time Git touches it
+[GitWork 6e4ccef] Modified hello.xml in GitWork
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (GitWork)
+$ git checkout main
+Switched to branch 'main'
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ echo "<message>Hello from main branch!</message>" > hello.xml
+bash: !: event not found
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ echo '<message>Hello from main branch!</message>' > hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git add hello.xml
+git commit -m "Modified hello.xml in main"
+warning: in the working copy of 'hello.xml', LF will be replaced by CRLF the next time Git touches it
+[main 9ff81f7] Modified hello.xml in main
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git merge GitWork
+Auto-merging hello.xml
+CONFLICT (content): Merge conflict in hello.xml
+Automatic merge failed; fix conflicts and then commit the result.
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main|MERGING)
+$ notepad++ hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main|MERGING)
+$ git add hello.xml
+git commit -m "Resolved merge conflict in hello.xml"
+[main 3190e62] Resolved merge conflict in hello.xml
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ echo "*.orig" >> .gitignore
+git add .gitignore
+git commit -m "Add .orig files to .gitignore"
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+[main 59f63d6] Add .orig files to .gitignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git branch
+  GitWork
+* main
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git branch -d GitWork
+Deleted branch GitWork (was 6e4ccef).
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git log --oneline --graph --decorate
+* 59f63d6 (HEAD -> main) Add .orig files to .gitignore
+*   3190e62 Resolved merge conflict in hello.xml
+|\
+| * 6e4ccef Modified hello.xml in GitWork
+* | 9ff81f7 Modified hello.xml in main
+* | ed5378c Added hello.xml in main
+|/
+* 5efba7e Added hello.xml in GitWork
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$
+
+MS6@BOSS MINGW64 ~/GitDemo/GitConflictDemo (main)
+$ git commit
+On branch main
+nothing to commit, working tree clean

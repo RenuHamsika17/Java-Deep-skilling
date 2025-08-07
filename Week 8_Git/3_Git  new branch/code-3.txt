@@ -1,0 +1,82 @@
+Third hands on git:
+
+MS6@BOSS MINGW64 ~
+$ cd GitDemo
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ ls
+README.md  debug.log  log/  welcome.txt
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ ls -a
+./  ../  .git/  .gitignore  README.md  debug.log  log/  welcome.txt
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git branch GitNewBranch
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git branch -a
+  GitNewBranch
+* main
+  remotes/origin/main
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git checkout GitNewBranch
+Switched to branch 'GitNewBranch'
+
+MS6@BOSS MINGW64 ~/GitDemo (GitNewBranch)
+$ echo "This is a file in GitNewBranch" > branchfile.txt
+
+MS6@BOSS MINGW64 ~/GitDemo (GitNewBranch)
+$ git add branchfile.txt
+warning: in the working copy of 'branchfile.txt', LF will be replaced by CRLF the next time Git touches it
+
+MS6@BOSS MINGW64 ~/GitDemo (GitNewBranch)
+$ git status
+On branch GitNewBranch
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   branchfile.txt
+
+
+MS6@BOSS MINGW64 ~/GitDemo (GitNewBranch)
+$ git checkout main
+A       branchfile.txt
+Switched to branch 'main'
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git diff main..GitNewBranch
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git difftool -d main..GitNewBranch
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git merge GitNewBranch
+Already up to date.
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git log --oneline --graph --decorate
+* 3672395 (HEAD -> main, origin/main, GitNewBranch) Add .gitignore to ignore log files and log folder
+*   be91dc1 Merge branch 'main' of https://gitlab.com/renu_7-group/gitdemo Merged local and remote repositories
+|\
+| * dcb3c85 Initial commit
+* fba5a65 Initial commit of GitDemo project
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git branch -d GitNewBranch
+Deleted branch GitNewBranch (was 3672395).
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   branchfile.txt
+
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
+$ git push origin main
+warning: redirecting to https://gitlab.com/renu_7-group/gitdemo.git/
+Everything up-to-date
+
+MS6@BOSS MINGW64 ~/GitDemo (main)
